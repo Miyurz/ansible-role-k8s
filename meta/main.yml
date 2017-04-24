@@ -1,7 +1,7 @@
 galaxy_info:
-  author: your name
-  description: your description
-  company: your company (optional)
+  author: Mayur Nagekar
+  description: Bootstrap your node to install kubernetes's stable version.
+  company: None
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
