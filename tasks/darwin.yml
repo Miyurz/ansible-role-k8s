@@ -1,0 +1,7 @@
+---
+# Update homebrew first and install package figlet in default PATH
+- name: Installing minikube on Mac
+  get_url:
+    url: "https://storage.googleapis.com/minikube/releases/{{ minikube_version }}/minikube-darwin-amd64"
+    dest: /usr/local/bin/minikube
+    mode: 755

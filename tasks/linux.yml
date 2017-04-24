@@ -1,0 +1,24 @@
+---
+  # Check that a page returns a status 200 and fail if the word AWESOME is not
+  # in the page contents.
+- name: Get kubectl version to be installed
+  uri:
+    url: "{{ kubectl_stable_download_url }}"
+    method: GET
+    return_content: yes
+  register: kubectl_version
+
+- name: Fail if 'v' is not in the page content
+  fail:
+  when: "'v' not in kubectl_version.content"
+
+- name: Refine output
+  set_fact:
+    kubectl_version: "{{ kubectl_version.content|replace('\n','') }}"
+
+- name: Installing kubernetes on Linux
+  become: true
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version | replace('\n','') }}/bin/linux/amd64/kubectl
+    dest: /usr/local/bin/kubectl
+    mode: 755
